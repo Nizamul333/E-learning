@@ -1,0 +1,67 @@
+
+Warning: Undefined array key "stuLogEmail" in E:\xamp\htdocs\cse309Mid\user\userInclude\header.php on line 7
+E-Learning
+
+    studentimage
+
+Profile (current)
+My Courses
+Feedback
+Change Password
+
+    Logout
+
+CREATE TABLE feedback(
+f_id INT(11) NOT NULL,
+f_content VARCHAR(255),
+id INT(11) NOT NULL,
+CONSTRAINT OrderLine_PK PRIMARY KEY (f_id,
+id),
+CONSTRAINT OrderLine_FK1 FOREIGN KEY (id)
+REFERENCES user_t(id)
+);
+
+ALTER TABLE feedback
+ADD FOREIGN KEY (id) REFERENCES user_t(id);
+
+
+
+
+
+CREATE TABLE product (
+   f_id INT UNSIGNED AUTO_INCREMENT,
+   f_content VARCHAR(255),
+   bought_by INT UNSIGNED,
+   PRIMARY KEY (f_id),
+   FOREIGN KEY (bought_by) REFERENCES user_t (id)
+);
+CREATE TABLE feedback (
+   f_id INT  AUTO_INCREMENT,
+   f_content VARCHAR(255),
+   user_id INT UNSIGNED,
+   PRIMARY KEY (f_id,user_id),
+   FOREIGN KEY (user_id) REFERENCES user_t (id)
+);
+
+
+
+
+CREATE TABLE orders(
+order_id INT(11) NOT NULL,
+user_id  INT(11),
+course_id INT(11),    
+    
+order_date INT(11),
+CONSTRAINT OrderLine_PK PRIMARY KEY (order_id,
+user_id,course_id),
+CONSTRAINT OrderLine_FK1 FOREIGN KEY (user_id)
+REFERENCES user_t(id),
+    CONSTRAINT OrderLine_FK1 FOREIGN KEY (course_id)
+REFERENCES course(course_id),
+    CONSTRAINT OrderLine_FK1 FOREIGN KEY (course_id)
+REFERENCES course(course_id)
+);
+
+SELECT c.course_name FROM orders AS o ,user_t AS u,course AS c
+where o.user_id=u.id AND o.course_id=c.course_id;
+<?php $row['lesson_link']?>
